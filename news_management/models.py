@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Redactor(AbstractUser):
-    years_of_experience = models.IntegerField(null=False, blank=False)
+    years_of_experience = models.IntegerField(null=False, blank=False, default=0)
 
     class Meta:
         ordering = ("-years_of_experience", )
