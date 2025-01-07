@@ -20,3 +20,17 @@ class Topic(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Newspaper(models.Model):
+    title = models.CharField(max_length=255, null=False, blank=False)
+    content = models.TextField(null=False, blank=False)
+    published_date = models.DateField(null=False, blank=False)
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    publishers = models.ManyToManyField(Redactor)
+
+    class Meta:
+        ordering = ("title", "published_date")
+
+    def __str__(self):
+        return self.title
