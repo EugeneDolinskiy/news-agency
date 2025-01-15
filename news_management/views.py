@@ -1,7 +1,11 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
 from news_management.models import Redactor, Newspaper, Topic
+from .forms import (
+    RedactorCreationForm,
+)
 
 
 def index(request):
@@ -45,6 +49,12 @@ class NewspaperDetailView(generic.DetailView):
 class RedactorListView(generic.ListView):
     model = Redactor
     paginate_by = 5
+
+
+class RedactorCreateView(generic.CreateView):
+    model = Redactor
+    form_class = RedactorCreationForm
+    success_url = reverse_lazy("news_management:redactor-list")
 
 
 class RedactorDetailView(generic.DetailView):
