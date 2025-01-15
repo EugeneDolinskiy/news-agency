@@ -5,18 +5,21 @@
   <h1>
     Newspaper List
   </h1>
-  
+
   {% if newspaper_list %}
     <ul>
       {% for newspaper in newspaper_list %}
         <li>
-          {{ newspaper.title }} - {{ newspaper.published_date }}
+          <a href="{% url 'news_management:newspaper-detail' pk=newspaper.id %}">
+            {{ newspaper.title }}
+          </a>
+          - {{ newspaper.published_date }}
         </li>
       {% endfor %}
     </ul>
-    
+
   {% else %}
     <p>There are no newspapers in agency</p>
   {% endif %}
-  
+
 {% endblock %}
