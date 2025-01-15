@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <h1>
+    Topic List
+  </h1>
+  {% if topic_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+      </tr>
+
+      {% for topic in topic_list %}
+        <tr>
+          <td>
+            {{ topic.id }}
+          </td>
+          <td>
+            {{ topic.name }}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+    
+  {% else %}
+    <p>There are no topics in the agency</p>
+  {% endif %}
+  
+{% endblock %}
