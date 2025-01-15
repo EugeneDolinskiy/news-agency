@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    {{ newspaper.title }}
+  </h1>
+  <h2>
+    Topic: {{ newspaper.topic.name }}
+  </h2>
+  <br>  
+  <hr>
+  <h3>
+    Redactors:
+  </h3>
+  <ul>
+    {% for redactor in newspaper.publishers.all %}
+      <li>
+        {{ redactor.username }}
+        {% if redactor.first_name %}
+          - {{ redactor.first_name }} {{ redactor.last_name }}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
