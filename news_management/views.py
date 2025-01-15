@@ -36,3 +36,8 @@ class NewspaperListView(generic.ListView):
     context_object_name = "newspaper_list"
     template_name = "news_management/newspaper_list.html"
     paginate_by = 5
+
+
+class RedactorListView(generic.ListView):
+    model = Redactor
+    paginate_by = 5
