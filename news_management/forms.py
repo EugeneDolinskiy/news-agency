@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from news_management.models import Redactor
 
 
-class RedactorCreationForm(UserCreationForm):
+class RedactorCreateForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Redactor
         fields = UserCreationForm.Meta.fields + (

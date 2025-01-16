@@ -4,6 +4,9 @@
 {% block content %}
   <h1>
     Topic List
+    <a href="{% url 'news_management:topic-create' %}" class="btn btn-success link-to-page">
+      Add topic
+    </a>
   </h1>
   {% if topic_list %}
     <table class="table">
