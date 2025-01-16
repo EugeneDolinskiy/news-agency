@@ -4,6 +4,9 @@
 {% block content %}
   <h1>
     Newspaper List
+    <a href="{% url 'news_management:newspaper-create' %}" class="btn btn-success link-to-page">
+      Add newspaper
+    </a>
   </h1>
 
   {% if newspaper_list %}
