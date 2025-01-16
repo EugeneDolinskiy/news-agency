@@ -5,6 +5,7 @@ from django.views import generic
 from news_management.models import Redactor, Newspaper, Topic
 from .forms import (
     RedactorCreateForm,
+    NewspaperForm,
 )
 
 
@@ -50,6 +51,12 @@ class NewspaperListView(generic.ListView):
 
 class NewspaperDetailView(generic.DetailView):
     model = Newspaper
+
+
+class NewspaperCreateView(generic.CreateView):
+    model = Newspaper
+    form_class = NewspaperForm
+    success_url = reverse_lazy("news_management:newspaper-list")
 
 
 class RedactorListView(generic.ListView):
