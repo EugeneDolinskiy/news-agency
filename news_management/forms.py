@@ -22,6 +22,10 @@ class NewspaperForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
     )
 
+    published_date = forms.DateField(
+        widget=forms.DateInput(attrs={"type": "date"}),
+    )
+
     class Meta:
         model = Newspaper
         fields = "__all__"
