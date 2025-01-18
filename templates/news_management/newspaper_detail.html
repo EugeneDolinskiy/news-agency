@@ -14,6 +14,11 @@
   <p>
     {{ newspaper.content }}
   </p>
+  <p>
+    <a href="{% url 'news_management:newspaper-update' pk=newspaper.id %}" class="btn btn-warning">
+      Update
+    </a>
+  </p>
   <hr>
   <h3>
     Redactors:
