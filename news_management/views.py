@@ -65,6 +65,12 @@ class NewspaperCreateView(generic.CreateView):
     success_url = reverse_lazy("news_management:newspaper-list")
 
 
+class NewspaperUpdateView(generic.UpdateView):
+    model = Newspaper
+    form_class = NewspaperForm
+    success_url = reverse_lazy("news_management:newspaper-detail")
+
+
 class RedactorListView(generic.ListView):
     model = Redactor
     paginate_by = 5
