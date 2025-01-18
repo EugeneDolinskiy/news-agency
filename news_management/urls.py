@@ -12,6 +12,7 @@ from .views import (
     RedactorListView,
     RedactorDetailView,
     RedactorCreateView,
+    RedactorUpdateView,
 )
 
 urlpatterns = [
@@ -40,11 +41,20 @@ urlpatterns = [
         name='newspaper-update'
     ),
     path('redactors/', RedactorListView.as_view(), name='redactor-list'),
-    path('redactors/create/', RedactorCreateView.as_view(), name='redactor-create'),
+    path(
+        'redactors/create/',
+        RedactorCreateView.as_view(),
+        name='redactor-create'
+    ),
     path(
         'redactors/<int:pk>/',
         RedactorDetailView.as_view(),
         name='redactor-detail'
+    ),
+    path(
+        'redactors/<int:pk>/update/',
+        RedactorUpdateView.as_view(),
+        name='redactor-update'
     ),
 ]
 
