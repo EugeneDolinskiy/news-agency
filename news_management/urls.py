@@ -3,19 +3,25 @@ from django.urls import path
 from .views import (
     index,
     TopicListView,
+    TopicCreateView,
+    TopicUpdateView,
     NewspaperListView,
     NewspaperDetailView,
     NewspaperCreateView,
     RedactorListView,
     RedactorDetailView,
     RedactorCreateView,
-    TopicCreateView,
 )
 
 urlpatterns = [
     path('', index, name='index'),
     path('topics/', TopicListView.as_view(), name='topic-list'),
     path('topics/create/', TopicCreateView.as_view(), name='topic-create'),
+    path(
+        'topics/<int:pk>/update',
+        TopicUpdateView.as_view(),
+        name='topic-update'
+    ),
     path('newspapers/', NewspaperListView.as_view(), name='newspaper-list'),
     path(
         'newspapers/<int:pk>/',
