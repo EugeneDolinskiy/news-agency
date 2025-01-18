@@ -13,6 +13,8 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
       </tr>
 
       {% for topic in topic_list %}
@@ -23,12 +25,18 @@
           <td>
             {{ topic.name }}
           </td>
+          <td>
+            <a href="{% url 'news_management:topic-update' pk=topic.id %}">
+              Update
+            </a>
+          </td>
+          <td></td>
         </tr>
       {% endfor %}
     </table>
-    
+
   {% else %}
     <p>There are no topics in the agency</p>
   {% endif %}
-  
+
 {% endblock %}
