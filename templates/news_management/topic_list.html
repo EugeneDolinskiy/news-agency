@@ -26,8 +26,13 @@
             {{ topic.name }}
           </td>
           <td>
-            <a href="{% url 'news_management:topic-update' pk=topic.id %}">
+            <a href="{% url 'news_management:topic-update' pk=topic.id %}" class="btn btn-warning">
               Update
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'news_management:topic-delete' pk=topic.id %}" class="btn btn-danger">
+              Delete
             </a>
           </td>
           <td></td>
