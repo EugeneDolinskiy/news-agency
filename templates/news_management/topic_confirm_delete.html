@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Delete topic: {{ topic.name }}?</h1>
+  {% if topic.newspaper_set.all %}
+    <h4>With this action, the following newspapers will be deleted:</h4>
+    {% for newspaper in topic.newspaper_set.all %}
+      <ul>
+        <li>{{ newspaper }}</li>
+      </ul>
+    {% endfor %}
+  {% endif %}
+  <p><strong>This action cannot be undone</strong></p>
+  <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Yes" class="btn btn-danger">
+    <a href="{% url 'news_management:topic-list' %}" class="btn btn-secondary">
+      Back
+    </a>
+  </form>
+{% endblock %}
