@@ -85,3 +85,9 @@ class RedactorCreateView(generic.CreateView):
 class RedactorDetailView(generic.DetailView):
     model = Redactor
     queryset = Redactor.objects.all().prefetch_related("newspaper_set__topic")
+
+
+class RedactorUpdateView(generic.UpdateView):
+    model = Redactor
+    form_class = RedactorCreateForm
+    success_url = reverse_lazy("news_management:redactor-detail")
