@@ -10,6 +10,7 @@ from .views import (
     NewspaperDetailView,
     NewspaperCreateView,
     NewspaperUpdateView,
+    NewspaperDeleteView,
     RedactorListView,
     RedactorDetailView,
     RedactorCreateView,
@@ -18,8 +19,16 @@ from .views import (
 
 urlpatterns = [
     path('', index, name='index'),
-    path('topics/', TopicListView.as_view(), name='topic-list'),
-    path('topics/create/', TopicCreateView.as_view(), name='topic-create'),
+    path(
+        'topics/',
+        TopicListView.as_view(),
+        name='topic-list'
+    ),
+    path(
+        'topics/create/',
+        TopicCreateView.as_view(),
+        name='topic-create'
+    ),
     path(
         'topics/<int:pk>/update/',
         TopicUpdateView.as_view(),
@@ -30,7 +39,11 @@ urlpatterns = [
         TopicDeleteView.as_view(),
         name='topic-delete'
     ),
-    path('newspapers/', NewspaperListView.as_view(), name='newspaper-list'),
+    path(
+        'newspapers/',
+        NewspaperListView.as_view(),
+        name='newspaper-list'
+    ),
     path(
         'newspapers/<int:pk>/',
         NewspaperDetailView.as_view(),
@@ -46,7 +59,16 @@ urlpatterns = [
         NewspaperUpdateView.as_view(),
         name='newspaper-update'
     ),
-    path('redactors/', RedactorListView.as_view(), name='redactor-list'),
+    path(
+        'newspapers/<int:pk>/delete/',
+        NewspaperDeleteView.as_view(),
+        name='newspaper-delete'
+    ),
+    path(
+        'redactors/',
+        RedactorListView.as_view(),
+        name='redactor-list'
+    ),
     path(
         'redactors/create/',
         RedactorCreateView.as_view(),
