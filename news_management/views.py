@@ -5,7 +5,7 @@ from django.views import generic
 from news_management.models import Redactor, Newspaper, Topic
 from .forms import (
     RedactorCreateForm,
-    NewspaperForm,
+    NewspaperForm, NewspaperTitleSearchForm,
 )
 
 
@@ -58,6 +58,21 @@ class NewspaperListView(generic.ListView):
     context_object_name = "newspaper_list"
     template_name = "news_management/newspaper_list.html"
     paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(NewspaperListView, self).get_context_data(**kwargs)
+        title = self.request.GET.get("title", "")
+        context["search_form"] = NewspaperTitleSearchForm(
+            initial={"title": title}
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get("title", "")
+        if search_query:
+            queryset = queryset.filter(title__icontains=search_query)
+        return queryset.order_by("title")
 
 
 class NewspaperDetailView(generic.DetailView):
