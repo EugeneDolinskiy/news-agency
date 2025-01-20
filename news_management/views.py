@@ -5,7 +5,9 @@ from django.views import generic
 from news_management.models import Redactor, Newspaper, Topic
 from .forms import (
     RedactorCreateForm,
-    NewspaperForm, NewspaperTitleSearchForm,
+    NewspaperForm,
+    NewspaperTitleSearchForm,
+    RedactorUsernameSearchForm,
 )
 
 
@@ -99,6 +101,21 @@ class NewspaperDeleteView(generic.DeleteView):
 class RedactorListView(generic.ListView):
     model = Redactor
     paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(RedactorListView, self).get_context_data(**kwargs)
+        username = self.request.GET.get("username", "")
+        context["search_form"] = RedactorUsernameSearchForm(
+            initial={"username": username}
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get("username", "")
+        if search_query:
+            queryset = queryset.filter(username__icontains=search_query)
+        return queryset.order_by("username")
 
 
 class RedactorCreateView(generic.CreateView):
