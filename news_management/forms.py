@@ -16,6 +16,19 @@ class RedactorCreateForm(UserCreationForm):
         )
 
 
+class RedactorUsernameSearchForm(forms.Form):
+    username = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Username"
+            }
+        )
+    )
+
+
 class NewspaperForm(forms.ModelForm):
     publishers = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
