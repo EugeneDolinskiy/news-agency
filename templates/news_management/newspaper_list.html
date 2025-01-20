@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load crispy_forms_field %}
+{% load crispy_forms_filters %}
 
 {% block content %}
   <h1>
@@ -8,6 +8,7 @@
       Add newspaper
     </a>
   </h1>
+  {% include "includes/search_field.html" %}
 
   {% if newspaper_list %}
     <ul>
