@@ -7,7 +7,7 @@ from .forms import (
     RedactorCreateForm,
     NewspaperForm,
     NewspaperTitleSearchForm,
-    RedactorUsernameSearchForm,
+    RedactorUsernameSearchForm, TopicNameSearchForm,
 )
 
 
@@ -33,9 +33,23 @@ def index(request):
 
 class TopicListView(generic.ListView):
     model = Topic
-    context_object_name = "topic_list"
     template_name = "news_management/topic_list.html"
     paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TopicListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = TopicNameSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get("name", "")
+        if search_query:
+            queryset = queryset.filter(name__icontains=search_query)
+        return queryset.order_by("name")
 
 
 class TopicCreateView(generic.CreateView):
@@ -57,7 +71,6 @@ class TopicDeleteView(generic.DeleteView):
 
 class NewspaperListView(generic.ListView):
     model = Newspaper
-    context_object_name = "newspaper_list"
     template_name = "news_management/newspaper_list.html"
     paginate_by = 5
 
