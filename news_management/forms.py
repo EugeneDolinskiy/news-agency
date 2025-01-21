@@ -23,7 +23,7 @@ class RedactorUsernameSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Username"
+                "placeholder": "Enter username"
             }
         )
     )
@@ -51,7 +51,20 @@ class NewspaperTitleSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Title"
+                "placeholder": "Enter title"
+            }
+        )
+    )
+
+
+class TopicNameSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Enter topic name"
             }
         )
     )
