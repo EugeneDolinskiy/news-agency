@@ -1,6 +1,8 @@
 <ul class="sidebar-nav list-group">
   {% if user.is_authenticated %}
-    <li class="list-group-item">User: <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a></li>
+    <li class="list-group-item">
+      User: <a href="{% url 'news_management:redactor-detail' pk=user.id%}">{{ user.get_username }}</a>
+    </li>
     <form method="post" action="{% url 'logout' %}" class="list-group-item">
       {% csrf_token %}
       <button type="submit" class="btn btn-link">Logout</button>
