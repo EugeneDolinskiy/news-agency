@@ -1,20 +1,21 @@
 <ul class="sidebar-nav list-group">
   {% if user.is_authenticated %}
     <li class="list-group-item">
-      User: <a href="{% url 'news_management:redactor-detail' pk=user.id%}">{{ user.get_username }}</a>
+      <strong>User:</strong> <a href="{% url 'news_management:redactor-detail' pk=user.id%}">{{ user.get_username }}</a>
     </li>
-    <form method="post" action="{% url 'logout' %}" class="list-group-item">
-      {% csrf_token %}
-      <button type="submit" class="btn btn-link">Logout</button>
-    </form>
+    <li class="list-group-item">
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger btn-block">Logout</button>
+      </form>
+    </li>
   {% else %}
     <li class="list-group-item">
-      <a href="{% url 'login' %}?next={{ request.path }}">Login</a>
+      <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-primary btn-block">Login</a>
     </li>
   {% endif %}
-  <br>
   <li class="list-group-item"><a href="{% url 'news_management:index' %}">Home</a></li>
-  <li class="list-group-item"><a href="{% url 'news_management:redactor-list' %}">All redactors</a></li>
-  <li class="list-group-item"><a href="{% url 'news_management:newspaper-list' %}">All newspapers</a></li>
-  <li class="list-group-item"><a href="{% url 'news_management:topic-list' %}">All topics</a></li>
+  <li class="list-group-item"><a href="{% url 'news_management:redactor-list' %}">All Redactors</a></li>
+  <li class="list-group-item"><a href="{% url 'news_management:newspaper-list' %}">All Newspapers</a></li>
+  <li class="list-group-item"><a href="{% url 'news_management:topic-list' %}">All Topics</a></li>
 </ul>

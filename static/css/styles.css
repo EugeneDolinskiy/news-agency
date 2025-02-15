@@ -118,6 +118,38 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
+.sidebar-nav {
+    background-color: #f8f9fa;
+    /* Light background color */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+}
+
+.sidebar-nav .list-group-item {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    /* Light border */
+}
+
+.sidebar-nav .list-group-item:hover {
+    background-color: #e9ecef;
+    /* Light hover effect */
+}
+
+.sidebar-nav a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.sidebar-nav a:hover {
+    text-decoration: underline;
+}
+
+.btn-block {
+    margin-top: 10px;
+}
+
 @media (max-width: 768px) {
     .container {
         width: 95%;
