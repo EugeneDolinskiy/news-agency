@@ -1,18 +1,26 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-	<h1>News Agency Home</h1>
-  <p>Welcome to Best News Agency Ever!</p>
-  <h2>Dynamic content</h2>
-  <p>The News Agency has the following record counts:</p>
-  <ul>
-    <li><strong>Redactors:</strong> {{ num_redactors }}</li>
-    <li><strong>Newspapers:</strong> {{ num_newspapers }}</li>
-    <li><strong>Topics:</strong> {{ num_topics }} </li>
-  </ul>
-  
-  <p>You have visited this page
-    {{ num_visits }} time{{ num_visits|pluralize }}.
-  </p>
-  
+  <div class="container" style="background-image: url('{% static 'images/bg-1.jpg' %}');">
+    <h1 class="page-title">Welcome to the Best News Agency Ever!</h1>
+    <p class="intro-text">Your go-to source for the latest news and insights.</p>
+    
+    <div class="stats-section">
+      <div class="stats-item">
+        <h2 class="stats-title">Dynamic Content</h2>
+        <p>The News Agency has the following record counts:</p>
+        <ul class="stats-list">
+          <li><strong>Redactors:</strong> <span class="badge">{{ num_redactors }}</span></li>
+          <li><strong>Newspapers:</strong> <span class="badge">{{ num_newspapers }}</span></li>
+          <li><strong>Topics:</strong> <span class="badge">{{ num_topics }}</span></li>
+        </ul>
+      </div>
+      
+      <div class="stats-item">
+        <h2 class="stats-title">Page Visits</h2>
+        <p>You have visited this page <strong>{{ num_visits }}</strong> time{{ num_visits|pluralize }}.</p>
+      </div>
+    </div>
+  </div>
 {% endblock %}
