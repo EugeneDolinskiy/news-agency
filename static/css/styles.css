@@ -1,10 +1,14 @@
+html,
 body {
-    background-color: rgb(56, 18, 18);
+    background-color: rgb(211, 211, 211);
+    height: 100%;
     margin: 0;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100vh;
+    flex-direction: column;
+}
+
+.container-fluid {
+    flex: 1;
 }
 
 h1 {
@@ -70,4 +74,19 @@ h1 {
 
 .content-container {
     padding-top: 70px;
+}
+
+.footer {
+    background: #222;
+    color: #ddd;
+    text-align: center;
+    padding: 3px 0;
+    font-size: 1.1rem;
+    border-top: 3px solid #444;
+}
+
+.footer-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
 }
