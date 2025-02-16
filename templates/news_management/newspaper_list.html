@@ -2,28 +2,31 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>
-    Newspaper List
-    <a href="{% url 'news_management:newspaper-create' %}" class="btn btn-success link-to-page">
-      Add newspaper
-    </a>
-  </h1>
-  {% include "includes/search_field.html" %}
-
-  {% if newspaper_list %}
-    <ul>
-      {% for newspaper in newspaper_list %}
-        <li>
-          <a href="{% url 'news_management:newspaper-detail' pk=newspaper.id %}">
-            {{ newspaper.title }}
-          </a>
-          - {{ newspaper.published_date }}
-        </li>
-      {% endfor %}
-    </ul>
-
-  {% else %}
-    <p>There are no newspapers in agency</p>
-  {% endif %}
-
+  <div class="py-4 mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="text-primary fw-bold">Newspaper List</h1>
+      <a href="{% url 'news_management:newspaper-create' %}" class="btn btn-success shadow-sm px-4">
+        <i class="bi bi-plus-circle me-1"></i> Add Newspaper
+      </a>
+    </div>
+    
+    {% include "includes/search_field.html" %}
+    
+    {% if newspaper_list %}
+      <ul class="list-group shadow-sm rounded overflow-hidden">
+        {% for newspaper in newspaper_list %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{% url 'news_management:newspaper-detail' pk=newspaper.id %}" class="text-decoration-none text-dark fw-bold">
+              {{ newspaper.title }}
+            </a>
+            <span class="text-muted">{{ newspaper.published_date }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="alert alert-info text-center py-3 mt-3 fw-bold shadow-sm">
+        <i class="bi bi-exclamation-circle me-1"></i> There are no newspapers in the agency
+      </div>
+    {% endif %}
+  </div>
 {% endblock %}

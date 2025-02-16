@@ -1,39 +1,52 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    {{ newspaper.title }}
-  </h1>
-  <h2>
-    Topic: {{ newspaper.topic.name }}
-  </h2>
-  <br>
-  <h2>
-    Content:
-  </h2>
-  <p>
-    {{ newspaper.content }}
-  </p>
-  <p>
-    <a href="{% url 'news_management:newspaper-update' pk=newspaper.id %}" class="btn btn-warning">
-      Update
-    </a>
-    <a href="{% url 'news_management:newspaper-delete' pk=newspaper.id %}" class="btn btn-danger">
-      Delete
-    </a>
-  </p>
-  <hr>
-  <h3>
-    Redactors:
-  </h3>
-  <ul>
-    {% for redactor in newspaper.publishers.all %}
-      <li>
-        {{ redactor.username }}
-        {% if redactor.first_name %}
-          - {{ redactor.first_name }} {{ redactor.last_name }}
-        {% endif %}
-      </li>
-    {% endfor %}
-  </ul>
+  <div class="py-5 content-container">
+    <div class="text-center mb-5">
+      <h1 class="text-primary fw-bold mb-2">{{ newspaper.title }}</h1>
+      <h4 class="text-muted mb-4">Topic: <span class="fw-semibold">{{ newspaper.topic.name }}</span></h4>
+    </div>
+    
+    <div class="bg-light p-4 rounded shadow-sm border mb-4">
+      <h3 class="fw-bold mb-3">Content</h3>
+      <p class="fs-5 text-dark">{{ newspaper.content }}</p>
+    </div>
+    
+    <div class="text-center gap-4 mb-4">
+      <a href="{% url 'news_management:newspaper-update' pk=newspaper.id %}" class="btn btn-warning text-white px-5 py-3 shadow-sm">
+        <i class="bi bi-pencil-square me-2"></i> Update
+      </a>
+      <a href="{% url 'news_management:newspaper-delete' pk=newspaper.id %}" class="btn btn-danger text-white px-5 py-3 shadow-sm">
+        <i class="bi bi-trash me-2"></i> Delete
+      </a>
+    </div>
+
+    {% if user not in newspaper.publishers.all %}
+    <div class="text-center mb-4">
+      <a href="{% url 'news_management:add_redactor' pk=newspaper.id %}" class="btn btn-success text-white px-5 py-3 shadow-sm">
+        <i class="bi bi-person-plus me-2"></i> Add me as Redactor
+      </a>
+    </div>
+    {% else %}
+    <div class="text-center mb-4">
+      <a href="{% url 'news_management:remove_redactor' pk=newspaper.id %}" class="btn btn-danger text-white px-5 py-3 shadow-sm">
+        <i class="bi bi-person-dash me-2"></i> Remove me from Redactors
+      </a>
+    </div>
+    {% endif %}
+    
+    <div class="mt-5">
+      <h3 class="fw-bold text-white text-center mb-4">Redactors</h3>
+      <ul class="list-group list-group-flush shadow-sm">
+        {% for redactor in newspaper.publishers.all %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span class="fw-semibold">{{ redactor.username }}</span>
+            {% if redactor.first_name %}
+              <span class="text-muted">{{ redactor.first_name }} {{ redactor.last_name }}</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
 {% endblock %}
