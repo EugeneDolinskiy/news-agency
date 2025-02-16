@@ -1,26 +1,35 @@
 {% extends "base.html" %}
-{% load static %}
 
 {% block content %}
-  <div class="container" style="background-image: url('{% static 'images/bg-1.jpg' %}');">
-    <h1 class="page-title">Welcome to the Best News Agency Ever!</h1>
-    <p class="intro-text">Your go-to source for the latest news and insights.</p>
-    
-    <div class="stats-section">
-      <div class="stats-item">
-        <h2 class="stats-title">Dynamic Content</h2>
-        <p>The News Agency has the following record counts:</p>
-        <ul class="stats-list">
-          <li><strong>Redactors:</strong> <span class="badge">{{ num_redactors }}</span></li>
-          <li><strong>Newspapers:</strong> <span class="badge">{{ num_newspapers }}</span></li>
-          <li><strong>Topics:</strong> <span class="badge">{{ num_topics }}</span></li>
-        </ul>
-      </div>
-      
-      <div class="stats-item">
-        <h2 class="stats-title">Page Visits</h2>
-        <p>You have visited this page <strong>{{ num_visits }}</strong> time{{ num_visits|pluralize }}.</p>
-      </div>
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <h1 class="display-4 text-primary fw-bold">Welcome to Best News Agency Ever!</h1>
+      <p class="lead text-muted">Your go-to source for the latest news and updates.</p>
+    </div>
+
+    <div class="bg-light p-4 rounded shadow-sm mb-5 mx-auto w-75">
+      <h2 class="fw-bold text-center mb-4">Dynamic Content</h2>
+      <p class="fs-5 text-dark">The News Agency has the following record counts:</p>
+      <ul class="list-group list-group-flush shadow-sm">
+        <li class="list-group-item d-flex justify-content-between">
+          <strong>Redactors:</strong> 
+          <span class="text-primary">{{ num_redactors }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <strong>Newspapers:</strong> 
+          <span class="text-primary">{{ num_newspapers }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <strong>Topics:</strong> 
+          <span class="text-primary">{{ num_topics }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="bg-white p-4 rounded shadow-sm mx-auto w-75">
+      <p class="fs-5 text-dark">You have visited this page 
+        <span class="fw-semibold">{{ num_visits }} time{{ num_visits|pluralize }}</span>.
+      </p>
     </div>
   </div>
 {% endblock %}
