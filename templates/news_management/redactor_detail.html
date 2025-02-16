@@ -1,32 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    Username: {{ redactor.username }}
-  </h1>
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <h1 class="display-4 text-primary fw-bold">Username: {{ redactor.username }}</h1>
+    </div>
 
-  <p><strong>First name:</strong> {{ redactor.first_name }}</p>
-  <p><strong>Last name:</strong> {{ redactor.last_name }}</p>
-  <p><strong>Years of experience:</strong> {{ redactor.years_of_experience }}</p>
-  <p><strong>Is staff:</strong> {{ redactor.is_staff }}</p>
+    <div class="bg-light p-4 rounded shadow-sm mb-4">
+      <p><strong>First name:</strong> {{ redactor.first_name }}</p>
+      <p><strong>Last name:</strong> {{ redactor.last_name }}</p>
+      <p><strong>Years of experience:</strong> {{ redactor.years_of_experience }}</p>
+      <p><strong>Is staff:</strong> {{ redactor.is_staff }}</p>
 
-  <p>
-    <a href="{% url 'news_management:redactor-update' pk=redactor.id %}" class="btn btn-warning">
-      Update
-    </a>
-  </p>
+      <div class="text-center mt-4">
+        <a href="{% url 'news_management:redactor-update' pk=redactor.id %}" class="btn btn-warning px-4 py-2">
+          <i class="bi bi-pencil-square"></i> Update
+        </a>
+      </div>
+    </div>
 
-  <div class="ml-3">
-    <h4>Newspapers:</h4>
-
-    {% for newspaper in redactor.newspaper_set.all %}
-      <hr>
-      <p><strong>Title:</strong> {{ newspaper.title }}</p>
-      <p><strong>Topic:</strong> {{ newspaper.topic.name }}</p>
-
-    {% empty %}
-      <p>No newspapers!</p>
-    {% endfor %}
+    <div class="bg-white p-4 rounded shadow-sm">
+      <h4 class="fw-bold text-center mb-3">Newspapers:</h4>
+      {% for newspaper in redactor.newspaper_set.all %}
+      <div class="mb-4">
+        <hr>
+        <p><strong>Title:</strong> 
+          <a href="{% url 'news_management:newspaper-detail' pk=newspaper.id %}" class="text-primary">
+            {{ newspaper.title }}
+          </a>
+        </p>
+        <p><strong>Topic:</strong> <span class="text-secondary">{{ newspaper.topic.name }}</span></p>
+      </div>
+      {% empty %}
+        <p class="text-center text-muted">No newspapers!</p>
+      {% endfor %}
+    </div>
   </div>
-
 {% endblock %}
