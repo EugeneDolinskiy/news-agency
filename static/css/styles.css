@@ -90,3 +90,11 @@ h1 {
     max-width: 1200px;
     margin: auto;
 }
+
+.text-justify {
+    text-align: justify;
+}
+
+.fs-5.text-dark p {
+    text-indent: 30px;
+}
