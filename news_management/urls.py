@@ -8,6 +8,8 @@ from .views import (
     TopicDeleteView,
     NewspaperListView,
     NewspaperDetailView,
+    add_redactor,
+    remove_redactor,
     NewspaperCreateView,
     NewspaperUpdateView,
     NewspaperDeleteView,
@@ -48,6 +50,16 @@ urlpatterns = [
         'newspapers/<int:pk>/',
         NewspaperDetailView.as_view(),
         name='newspaper-detail'
+    ),
+    path(
+        'newspapers/<int:pk>/add_redactor/',
+        add_redactor,
+        name='add_redactor'
+    ),
+    path(
+        'newspapers/<int:pk>/remove_redactor/',
+        remove_redactor,
+        name='remove_redactor'
     ),
     path(
         'newspapers/create/',
