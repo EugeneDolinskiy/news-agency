@@ -21,19 +21,17 @@
       </a>
     </div>
 
-    {% if user not in newspaper.publishers.all %}
     <div class="text-center mb-4">
-      <a href="{% url 'news_management:add_redactor' pk=newspaper.id %}" class="btn btn-success text-white px-5 py-3 shadow-sm">
-        <i class="bi bi-person-plus me-2"></i> Add me as Redactor
-      </a>
+      {% if user not in newspaper.publishers.all %}
+        <a href="{% url 'news_management:add_redactor' pk=newspaper.id %}" class="btn btn-outline-success btn-sm shadow-sm">
+          <i class="bi bi-person-plus"></i> Add me
+        </a>
+      {% else %}
+        <a href="{% url 'news_management:remove_redactor' pk=newspaper.id %}" class="btn btn-outline-danger btn-sm shadow-sm">
+          <i class="bi bi-person-dash"></i> Remove me
+        </a>
+      {% endif %}
     </div>
-    {% else %}
-    <div class="text-center mb-4">
-      <a href="{% url 'news_management:remove_redactor' pk=newspaper.id %}" class="btn btn-danger text-white px-5 py-3 shadow-sm">
-        <i class="bi bi-person-dash me-2"></i> Remove me from Redactors
-      </a>
-    </div>
-    {% endif %}
     
     <div class="mt-5">
       <h3 class="fw-bold text-white text-center mb-4">Redactors</h3>
