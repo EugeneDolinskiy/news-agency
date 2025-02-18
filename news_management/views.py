@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.views import generic
 
 from news_management.models import Redactor, Newspaper, Topic
@@ -119,7 +119,11 @@ class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
 class NewspaperUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Newspaper
     form_class = NewspaperForm
-    success_url = reverse_lazy("news_management:newspaper-detail")
+
+    def get_success_url(self):
+        return reverse(
+            "news_management:newspaper-detail", kwargs={"pk": self.object.pk}
+        )
 
 
 class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
@@ -161,4 +165,8 @@ class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
 class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Redactor
     form_class = RedactorCreateForm
-    success_url = reverse_lazy("news_management:redactor-detail")
+
+    def get_success_url(self):
+        return reverse(
+            "news_management:redactor-detail", kwargs={"pk": self.object.pk}
+        )
