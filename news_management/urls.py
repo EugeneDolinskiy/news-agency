@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import (
+from news_management.views import (
     index,
     TopicListView,
     TopicCreateView,

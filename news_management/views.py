@@ -5,7 +5,7 @@ from django.urls import reverse, reverse_lazy
 from django.views import generic
 
 from news_management.models import Redactor, Newspaper, Topic
-from .forms import (
+from news_management.forms import (
     RedactorCreateForm,
     NewspaperForm,
     NewspaperTitleSearchForm,
