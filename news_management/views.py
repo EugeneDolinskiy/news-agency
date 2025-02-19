@@ -100,14 +100,14 @@ class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
 def add_redactor(request, pk):
     newspaper = get_object_or_404(Newspaper, pk=pk)
     newspaper.publishers.add(request.user)
-    return redirect('news_management:newspaper-detail', pk=pk)
+    return redirect("news_management:newspaper-detail", pk=pk)
 
 
 @login_required
 def remove_redactor(request, pk):
     newspaper = get_object_or_404(Newspaper, pk=pk)
     newspaper.publishers.remove(request.user)
-    return redirect('news_management:newspaper-detail', pk=pk)
+    return redirect("news_management:newspaper-detail", pk=pk)
 
 
 class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):

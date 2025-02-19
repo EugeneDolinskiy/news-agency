@@ -33,7 +33,9 @@ class AdminSiteTest(TestCase):
         page
         :return:
         """
-        url = reverse("admin:news_management_redactor_change", args=[self.redactor.id])
+        url = reverse(
+            "admin:news_management_redactor_change", args=[self.redactor.id]
+        )
         res = self.client.get(url)
 
         self.assertContains(res, self.redactor.years_of_experience)

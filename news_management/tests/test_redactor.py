@@ -45,7 +45,9 @@ class PrivateRedactorTests(TestCase):
             password="password123",
             years_of_experience=10,
         )
-        response = self.client.get(REDACTOR_LIST_URL, {"username": "redactor1"})
+        response = self.client.get(
+            REDACTOR_LIST_URL, {"username": "redactor1"}
+        )
         self.assertEqual(len(response.context["redactor_list"]), 1)
         self.assertEqual(response.context["redactor_list"][0], self.redactor)
 
@@ -55,7 +57,9 @@ class PrivateRedactorTests(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["redactor"], self.redactor)
-        self.assertTemplateUsed(response, "news_management/redactor_detail.html")
+        self.assertTemplateUsed(
+            response, "news_management/redactor_detail.html"
+        )
 
     def test_create_redactor(self):
         """Test creating a new redactor"""
