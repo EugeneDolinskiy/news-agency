@@ -1,21 +1,32 @@
+:root {
+    --primary-color: #6a3d92;
+    --secondary-color: #7b47a8;
+    --tertiary-color: #5a2d82;
+    --text-color: #3d2a5a;
+    --background-color: #f4eefc;
+    --footer-bg-color: #3d2a5a;
+    --footer-border-color: #2a1d3d;
+    --button-shadow: rgba(123, 71, 168, 0.3);
+}
+
 html,
 body {
-    background-color: #f4eefc;
+    background-color: var(--background-color);
     height: 100%;
     margin: 0;
     display: flex;
     flex-direction: column;
     font-family: Arial, sans-serif;
-    color: #3d2a5a;
+    color: var(--text-color);
 }
 
 .container-fluid {
-    flex: 1;
+    flex-grow: 1;
 }
 
 h1 {
     font-size: 2.5rem;
-    color: #6a3d92;
+    color: var(--primary-color);
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -25,26 +36,26 @@ h1 {
 }
 
 .btn-primary {
-    background-color: #7b47a8;
-    border-color: #6a3d92;
+    background-color: var(--secondary-color);
+    border-color: var(--primary-color);
     transition: 0.3s ease, transform 0.2s;
     font-weight: bold;
     text-transform: uppercase;
     padding: 10px 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(123, 71, 168, 0.3);
+    box-shadow: 0 4px 6px var(--button-shadow);
 }
 
 .btn-primary:hover {
-    background-color: #5a2d82;
-    border-color: #4a2369;
+    background-color: var(--tertiary-color);
+    border-color: var(--tertiary-color);
     transform: scale(1.07);
     box-shadow: 0 5px 10px rgba(90, 45, 130, 0.4);
 }
 
 .btn-success {
-    background-color: #6a3d92;
-    border-color: #5a2d82;
+    background-color: var(--primary-color);
+    border-color: var(--tertiary-color);
     transition: 0.3s ease, transform 0.2s;
     font-weight: bold;
     text-transform: uppercase;
@@ -54,97 +65,45 @@ h1 {
 }
 
 .btn-success:hover {
-    background-color: #5a2d82;
-    border-color: #4a2369;
+    background-color: var(--tertiary-color);
+    border-color: var(--tertiary-color);
     transform: scale(1.07);
     box-shadow: 0 5px 10px rgba(90, 45, 130, 0.4);
 }
 
-.btn-transparent {
-    background-color: transparent;
-    border: none;
-    color: inherit;
-}
-
-.btn-transparent:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.table-responsive {
-    margin-top: 30px;
-}
-
-.table {
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.table th,
-.table td {
-    padding: 14px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-}
-
 .table th {
-    background-color: #6a3d92;
+    background-color: var(--primary-color);
     color: white;
     font-weight: bold;
 }
 
-.table-striped tbody tr:nth-child(odd) {
-    background-color: #e8d9f4;
-}
-
-.alert {
-    background-color: #f4eafc;
-    color: #5a2d82;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    padding: 15px;
-}
-
-.alert i {
-    font-size: 1.5rem;
-    color: #7b47a8;
-}
-
-.text-decoration-none {
-    text-decoration: none;
-    color: inherit;
-}
-
-.container {
-    width: 100%;
-}
-
-.content-container {
-    padding-top: 70px;
-}
-
 .footer {
-    background: #3d2a5a;
+    background: var(--footer-bg-color);
     color: #ddd;
     text-align: center;
     padding: 10px 0;
-    font-size: 1.1rem;
-    border-top: 3px solid #2a1d3d;
+    font-size: 1rem;
+    border-top: 3px solid var(--footer-border-color);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 0;
 }
 
-.footer-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
+.form-inline .input-group input.form-control {
+    border-radius: 10px !important;
+    border: 1px solid var(--primary-color) !important;
+    padding: 10px 15px !important;
+    font-size: 1rem !important;
+    color: var(--text-color) !important;
+    background-color: #fff !important;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
-.text-justify {
-    text-align: justify;
-}
-
-.fs-5.text-dark p {
-    text-indent: 30px;
-    line-height: 1.6;
+.form-inline .input-group input.form-control:focus {
+    border-color: var(--secondary-color) !important;
+    box-shadow: 0 0 5px rgba(123, 71, 168, 0.3) !important;
+    outline: none !important;
 }
