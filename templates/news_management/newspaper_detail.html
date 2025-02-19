@@ -25,13 +25,19 @@
 
     <div class="text-center mb-4">
       {% if user not in newspaper.publishers.all %}
-        <a href="{% url 'news_management:add_redactor' pk=newspaper.id %}" class="btn btn-outline-success btn-sm shadow-sm">
-          <i class="bi bi-person-plus"></i> Add me
-        </a>
+      <form action="{% url 'news_management:newspaper-redactor-update' pk=newspaper.id action='add' %}" method="post" class="d-inline">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-success btn-sm shadow-sm">
+            <i class="bi bi-person-plus"></i> Add me
+        </button>
+      </form>
       {% else %}
-        <a href="{% url 'news_management:remove_redactor' pk=newspaper.id %}" class="btn btn-outline-danger btn-sm shadow-sm">
-          <i class="bi bi-person-dash"></i> Remove me
-        </a>
+      <form action="{% url 'news_management:newspaper-redactor-update' pk=newspaper.id action='remove' %}" method="post" class="d-inline">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-danger btn-sm shadow-sm">
+            <i class="bi bi-person-dash"></i> Remove me
+        </button>
+      </form>
       {% endif %}
     </div>
     

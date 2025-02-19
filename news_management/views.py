@@ -1,6 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 
@@ -9,28 +8,25 @@ from news_management.forms import (
     RedactorCreateForm,
     NewspaperForm,
     NewspaperTitleSearchForm,
-    RedactorUsernameSearchForm, TopicNameSearchForm,
+    RedactorUsernameSearchForm,
+    TopicNameSearchForm,
 )
 
 
-def index(request):
-    """View function for the home page of the News Agency site."""
+class IndexView(generic.TemplateView):
+    template_name = "news_management/index.html"
 
-    num_redactors = Redactor.objects.count()
-    num_newspapers = Newspaper.objects.count()
-    num_topics = Topic.objects.count()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["num_redactors"] = Redactor.objects.count()
+        context["num_newspapers"] = Newspaper.objects.count()
+        context["num_topics"] = Topic.objects.count()
 
-    num_visits = request.session.get("num_visits", 0)
-    request.session["num_visits"] = num_visits + 1
+        num_visits = self.request.session.get("num_visits", 0)
+        self.request.session["num_visits"] = num_visits + 1
+        context["num_visits"] = num_visits + 1
 
-    context = {
-        "num_redactors": num_redactors,
-        "num_newspapers": num_newspapers,
-        "num_topics": num_topics,
-        "num_visits": num_visits + 1,
-    }
-
-    return render(request, "news_management/index.html", context=context)
+        return context
 
 
 class TopicListView(LoginRequiredMixin, generic.ListView):
@@ -96,18 +92,16 @@ class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
     model = Newspaper
 
 
-@login_required
-def add_redactor(request, pk):
-    newspaper = get_object_or_404(Newspaper, pk=pk)
-    newspaper.publishers.add(request.user)
-    return redirect("news_management:newspaper-detail", pk=pk)
+class NewspaperRedactorUpdateView(LoginRequiredMixin, generic.View):
+    def post(self, request, pk, action):
+        newspaper = get_object_or_404(Newspaper, pk=pk)
 
+        if action == "add":
+            newspaper.publishers.add(request.user)
+        elif action == "remove":
+            newspaper.publishers.remove(request.user)
 
-@login_required
-def remove_redactor(request, pk):
-    newspaper = get_object_or_404(Newspaper, pk=pk)
-    newspaper.publishers.remove(request.user)
-    return redirect("news_management:newspaper-detail", pk=pk)
+        return redirect("news_management:newspaper-detail", pk=pk)
 
 
 class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
