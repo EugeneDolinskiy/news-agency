@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container py-5">
+    <div class="text-center mb-4">
+      <h1 class="display-4 text-danger fw-bold">Delete Newspaper: {{ newspaper.title }}</h1>
+      <p class="lead text-muted">This action cannot be undone.</p>
+    </div>
+
+    <div class="bg-light p-4 rounded shadow-sm">
+      <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="text-center gap-3">
+          <input type="submit" value="Yes, Delete" class="btn btn-danger px-4 py-2">
+          <a href="{% url 'news_management:newspaper-detail' pk=newspaper.id %}" class="btn btn-secondary px-4 py-2">
+            Back
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
