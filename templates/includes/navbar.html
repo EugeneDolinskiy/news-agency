@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #6a3d92; box-shadow: 0 4px 6px rgba(106, 61, 146, 0.3);">
+  <div class="container-fluid">
+    <a class="navbar-brand font-weight-bold text-light" href="{% url 'news_management:index' %}">News Agency</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto d-flex align-items-center">
+        <li class="nav-item mr-3">
+          <a href="{% url 'news_management:index' %}" class="nav-link text-light">Home</a>
+        </li>
+        <li class="nav-item mr-3">
+          <a href="{% url 'news_management:redactor-list' %}" class="nav-link text-light">All Redactors</a>
+        </li>
+        <li class="nav-item mr-3">
+          <a href="{% url 'news_management:newspaper-list' %}" class="nav-link text-light">All Newspapers</a>
+        </li>
+        <li class="nav-item mr-3">
+          <a href="{% url 'news_management:topic-list' %}" class="nav-link text-light">All Topics</a>
+        </li>
+
+        {% if user.is_authenticated %}
+          <li class="nav-item mr-3">
+            <span class="nav-link text-light"><strong>User:</strong> <a href="{% url 'news_management:redactor-detail' pk=user.id%}" class="text-light">{{ user.get_username }}</a></span>
+          </li>
+          <li class="nav-item">
+            <form method="post" action="{% url 'logout' %}" class="nav-link p-0">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
+            </form>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a href="{% url 'login' %}" class="btn btn-outline-light btn-sm">Login</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

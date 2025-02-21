@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <h1 class="display-8 fw-bold">Welcome to Best News Agency Ever!</h1>
+      <p class="lead text-muted">Your go-to source for the latest news and updates.</p>
+    </div>
+
+    <div class="bg-light p-4 rounded shadow-sm mb-5 mx-auto w-75">
+      <h2 class="fw-bold text-center mb-4">Dynamic Content</h2>
+      <p class="fs-5 text-dark">The News Agency has the following record counts:</p>
+      <ul class="list-group list-group-flush shadow-sm">
+        <li class="list-group-item d-flex justify-content-between">
+          <strong>Redactors:</strong> 
+          <span class="text-primary">{{ num_redactors }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <strong>Newspapers:</strong> 
+          <span class="text-primary">{{ num_newspapers }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <strong>Topics:</strong> 
+          <span class="text-primary">{{ num_topics }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="bg-white p-4 rounded shadow-sm mx-auto w-75">
+      <p class="fs-5 text-dark">You have visited this page 
+        <span class="fw-semibold">{{ num_visits }} time{{ num_visits|pluralize }}</span>.
+      </p>
+    </div>
+  </div>
+{% endblock %}
