@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import generic
@@ -143,6 +144,21 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
         if search_query:
             queryset = queryset.filter(username__icontains=search_query)
         return queryset.order_by("username")
+
+
+class RedactorRegisterView(generic.CreateView):
+    model = Redactor
+    form_class = RedactorCreateForm
+    template_name = "registration/register.html"
+    success_url = reverse_lazy("news_management:index")
+
+    def form_valid(self, form):
+        form.save()
+        messages.success(
+            self.request,
+            "Your registration was successful! You can now log in."
+        )
+        return super().form_valid(form)
 
 
 class RedactorCreateView(LoginRequiredMixin, generic.CreateView):

@@ -7,6 +7,7 @@
     --footer-bg-color: #3d2a5a;
     --footer-border-color: #2a1d3d;
     --button-shadow: rgba(123, 71, 168, 0.3);
+    --register-bg-color: #7b47a8;
 }
 
 html,
@@ -106,4 +107,34 @@ h1 {
     border-color: var(--secondary-color) !important;
     box-shadow: 0 0 5px rgba(123, 71, 168, 0.3) !important;
     outline: none !important;
+}
+
+.bg-purple {
+    background-color: var(--register-bg-color);
+    color: white;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(123, 71, 168, 0.2);
+}
+
+.form-label {
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+input {
+    border-radius: 8px;
+    border: 1px solid var(--primary-color);
+    padding: 10px;
+    width: 100%;
+    font-size: 1rem;
+}
+
+input:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 5px var(--button-shadow);
+    outline: none;
 }

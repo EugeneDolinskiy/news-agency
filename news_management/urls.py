@@ -14,12 +14,14 @@ from news_management.views import (
     NewspaperDeleteView,
     RedactorListView,
     RedactorDetailView,
+    RedactorRegisterView,
     RedactorCreateView,
     RedactorUpdateView,
 )
 
 urlpatterns = [
     path("", IndexView.as_view(), name="index"),
+    path("register/", RedactorRegisterView.as_view(), name="register"),
     path("topics/", TopicListView.as_view(), name="topic-list"),
     path("topics/create/", TopicCreateView.as_view(), name="topic-create"),
     path(
