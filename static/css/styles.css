@@ -65,6 +65,38 @@ h1 {
     box-shadow: 0 4px 6px rgba(106, 61, 146, 0.3);
 }
 
+.btn-secondary {
+    transition: 0.3s ease, transform 0.2s;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary:hover {
+    background-color: rgb(50, 50, 50);
+    border-color: var(--tertiary-color);
+    transform: scale(1.07);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.btn-danger {
+    transition: 0.3s ease, transform 0.2s;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(108, 0, 0, 0.333);
+}
+
+.btn-danger:hover {
+    background-color: rgb(103, 0, 0);
+    border-color: var(--tertiary-color);
+    transform: scale(1.07);
+    box-shadow: 0 5px 10px rgba(146, 0, 0, 0.4);
+}
+
 .btn-success:hover {
     background-color: var(--tertiary-color);
     border-color: var(--tertiary-color);
@@ -137,4 +169,87 @@ input:focus {
     border-color: var(--secondary-color);
     box-shadow: 0 0 5px var(--button-shadow);
     outline: none;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 25px;
+    height: 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+input[type="checkbox"]:checked {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+input[type="checkbox"]::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: 0.2s;
+}
+
+input[type="checkbox"]:checked::after {
+    opacity: 1;
+}
+
+.form-check-label {
+    font-size: 1rem;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px;
+}
+
+.page-item {
+    list-style: none;
+}
+
+.page-link {
+    padding: 8px 12px;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    background: white;
+    transition: 0.3s;
+}
+
+.page-link:hover {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.current-page {
+    background: var(--tertiary-color);
+    color: white;
+    border-radius: 5px;
+    padding: 8px 12px;
 }

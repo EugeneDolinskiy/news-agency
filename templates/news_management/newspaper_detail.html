@@ -15,10 +15,10 @@
     </div>     
     
     <div class="text-center gap-4 mb-4">
-      <a href="{% url 'news_management:newspaper-update' pk=newspaper.id %}" class="btn btn-warning text-white px-5 py-3 shadow-sm">
+      <a href="{% url 'news_management:newspaper-update' pk=newspaper.id %}" class="btn btn-outline-warning px-3 py-6 shadow-sm">
         <i class="bi bi-pencil-square me-2"></i> Update
       </a>
-      <a href="{% url 'news_management:newspaper-delete' pk=newspaper.id %}" class="btn btn-danger text-white px-5 py-3 shadow-sm">
+      <a href="{% url 'news_management:newspaper-delete' pk=newspaper.id %}" class="btn btn-outline-danger px-3 py-6 shadow-sm">
         <i class="bi bi-trash me-2"></i> Delete
       </a>
     </div>
@@ -42,7 +42,7 @@
     </div>
     
     <div class="mt-5">
-      <h3 class="fw-bold text-white text-center mb-4">Redactors</h3>
+      <h3 class="fw-bold text-purple text-center mb-4">Redactors</h3>
       {% if newspaper.publishers.all %}
         <ul class="list-group list-group-flush shadow-sm">
           {% for redactor in newspaper.publishers.all %}
